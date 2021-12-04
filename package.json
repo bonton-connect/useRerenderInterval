@@ -1,6 +1,6 @@
 {
   "name": "use-rerender-interval",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "keywords": [
     "react",
     "hook",
@@ -9,7 +9,7 @@
     "render",
     "rerender"
   ],
-  "description": "Efficient useRerenderInterval hook for React. Allows declarative rerendering of react components on an interval with interval cleanup.",
+  "description": "Efficient useRerenderInterval hook for React. Allows declarative re-rendering of react components on an interval with proper cleanup.",
   "main": "dist/index.js",
   "repository": "git@github.com:bonton-connect/useRerenderInterval.git",
   "author": "Omran Jamal <omran@bonton.app>",

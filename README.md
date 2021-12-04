@@ -21,17 +21,17 @@ yarn add use-rerender-interval
 
 | Parameter Name | Type                                      | Default Value | Required | Description                                                                                                                                                                                                                                                                                                                                            |
 |----------------|-------------------------------------------|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| interval       | number                                    | 1000          | no       | The interval (in milliseconds) at which the calling component should re-render.                                                                                                                                                                                                                                                                        |
-| predicate      | `boolean \| ((count: number) => boolean)` |               | no       | This is an optional predicate parameter, you can either pass in a boolean everytime or you may pass in a function that accepts a count number and returns a boolean.  The boolean that you pass, or the boolean that is returned from your predicate function determines in the interval will continue to exist, or should the interval be cleaned up. |
+| interval       | `number`                                    | 1000          | no       | The interval (in milliseconds) at which the calling component should re-render.                                                                                                                                                                                                                                                                        |
+| predicate      | `boolean | Function` |               | no       | **Optional.** Pass true to enable interval, pass false to clear interval. Pass function that returns a boolean as a function of count (or any other external variable) |
 
 ### Return Type
 
 The hook returns a `number` called count. This is the number of times, the component has been re-rendered due to
 this hook.
 
-## Usage
+## Examples
 
-### Re-render every second, forever
+### Re-render Every Second; Forever.
 
 ```JavaScript
 import useRenderInterval from 'use-render-interval';
@@ -42,46 +42,40 @@ export default function Forever() {
 }
 ```
 
-### If you hate default vales
+### POV: You Hate Default Vales
+> I get it, default values are less readable.
 
 ```JavaScript
-import useRenderInterval from 'use-render-interval';
-
 export default function Forever() {
     const count = useRenderInterval(1000);
-    return <p>This will re-render every second, forever. [{count}]</p>;
+    return <p>{count}</p>;
 }
 ```
 
 
-### Re-render every second, for 30 seconds after first render
+### Re-render Every Second, For 30 Seconds
 
 ```JavaScript
-import useRenderInterval from 'use-render-interval';
-
 export default function JustTenTimes() {
     const limit = useRef(Date.now() + 30*1000);
 
     // Note: We didn't use a predicate function, because re-rendering
     //       runs the entire component function.
     const count = useRenderInterval(1000, Date.now() <= limit.current);
-    return <p>This will re-render every second, 30 seconds after first render. [{count}]</p>;
+    return <p>{count}</p>;
 }
 ```
 
 
 
-### Re-render every 2 seconds, 10 times.
+### Re-render Every 2 Seconds, 10 Times
 
 ```JavaScript
-import useRenderInterval from 'use-render-interval';
-
-export default function JustTenTimes() {
+function JustTenTimes() {
     // Note: it says less than 10, because the 10th time the interval logic is
     //       executed, the interval counter is still 9. (Ala for loops)
     const count = useRenderInterval(2000, count => count < 10);
-
-    return <p>This will re-render every 2 seconds, 10 times. [{count}]</p>;
+    return <p>{count}</p>;
 }
 ```
 
