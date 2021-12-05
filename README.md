@@ -1,7 +1,7 @@
 # useRerenderInterval
 
-Sometimes, however bad or _antipattern-y_ it feels. You jsut have to rerender a component
-on an interval. This hook makes it easy to do it efficiently.
+Sometimes you just have to re-render a component
+on an interval. This hook makes it easy to do it efficiently via hooks.
 
 ## Installation
 
@@ -9,7 +9,7 @@ on an interval. This hook makes it easy to do it efficiently.
 npm install --save use-rerender-interval
 ```
 
-or for yarn masterrace ...
+or if you like yarn ...
 
 ```bash
 yarn add use-rerender-interval
@@ -34,7 +34,7 @@ this hook.
 ### Re-render Every Second; Forever.
 
 ```JavaScript
-import useRenderInterval from 'use-render-interval';
+import useRenderInterval from 'use-rerender-interval';
 
 export default function Forever() {
     const count = useRenderInterval();
@@ -56,7 +56,7 @@ export default function Forever() {
 ### Re-render Every Second, For 30 Seconds
 
 ```JavaScript
-export default function JustTenTimes() {
+export default function JustThirtySeconds() {
     const limit = useRef(Date.now() + 30*1000);
 
     // Note: We didn't use a predicate function, because re-rendering
